@@ -1,0 +1,45 @@
+﻿@using MvcWebshop.Models
+
+
+@model WinkelWagen
+
+<div class="dropdown pull-right">
+    @*<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Winkelwagen
+            <span class="caret"></span>
+        </button>*@
+
+    <button class="btn btn-cart dropdown-toggle" type="button" id="winkelwagenBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <i class="fa fa-shopping-cart"></i> Winkelwagen
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" id="winkelwagenmenu" aria-labelledby="dropdownMenu1">
+        @foreach (Product p in @Model.Producten)
+        {
+            if (p.aanbiedingen.Count > 0)
+            {
+                Aanbieding a = p.aanbiedingen.Last();
+                <li class="row">
+                    <a class="col-md-10" href="@Url.Action("Id", "Product", new { id = p.id })"><i class="fa fa-exclamation"></i> @p.naam - &euro; @a.aanbiedingsprijs</a>
+                    <a class="col-md-2" href="javascript:deleteFromCart(@p.id)"><i class="fa fa-times"></i></a>
+                </li>
+            }
+            else
+            {
+                <li class="row">
+                    <a class="col-md-10" href="@Url.Action("Id", "Product", new { id = p.id })">@p.naam - &euro; @p.prijs</a>
+                    <a class="col-md-2" href="javascript:deleteFromCart(@p.id)"><i class="fa fa-times"></i></a>
+                </li>
+            }
+        }
+        @if (@Model.Producten.Count > 0)
+        {
+            <li>Totaal: &euro; @Model.Totaal()</li>
+            <li class="row" id="afrekenItem"><a class="col-md-12 text-right" href="@Url.Action("Afrekenen", "WinkelWagen")">Afrekenen <i class="fa fa-angle-double-right"></i></a></li>
+        }
+        else
+        {
+            <li><i>Geen producten in winkelwagen</i></li>
+        }
+    </ul>
+</div>

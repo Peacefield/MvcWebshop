@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Server error";
+}
+<div class="text-center">
+    <h1>5xx - Server error</h1>
+    <p>Er ging iets fout bij het ophalen van gegevens van de server.</p>
+
+    <a href="javascript:history.go(-1)" class="btn btn-custom"><i class="fa fa-arrow-circle-left"></i> Ga terug naar de vorige pagina</a>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-custom"><i class="fa fa-home"></i> Ga terug naar de startpagina</a>
+</div>

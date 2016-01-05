@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Pagina niet gevonden";
+}
+<div class="text-center">
+    <h1>404 - Pagina niet gevonden</h1>
+    <p>De opgevraagde pagina kan niet worden gevonden omdat deze is verplaatst of niet (meer) bestaat.</p>
+
+    <a href="javascript:history.go(-1)" class="btn btn-custom"><i class="fa fa-arrow-circle-left"></i> Ga terug naar de vorige pagina</a>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-custom"><i class="fa fa-home"></i> Ga terug naar de startpagina</a>
+</div>

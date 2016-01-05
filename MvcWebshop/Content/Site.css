@@ -1,0 +1,308 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,500,800);
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+@media screen and (min-width: 1px) and (max-width: 1024px) {
+
+
+    nav ul li {
+        width: 100%;
+        display: block;
+        float: none;
+        margin-top: 0px;
+    }
+
+        nav ul li a {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+            nav ul li a:hover {
+                color: white;
+            }
+
+    .navbar-nav li a:hover {
+        background-color: #16a085;
+    }
+
+    #uitklap-menu {
+        float: left;
+        display: block;
+        margin-right: 10px;
+    }
+
+        #uitklap-menu:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+    #navigation {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #uitklap-menu {
+        display: none;
+    }
+
+    #navigation {
+        display: block;
+    }
+
+        #navigation * {
+            box-sizing: border-box;
+            -webkit-transition: all 0.35s ease;
+            transition: all 0.35s ease;
+        }
+
+        #navigation li {
+            display: inline-block;
+            list-style: outside none none;
+            margin: 1em 1.5em;
+            overflow: hidden;
+        }
+
+        #navigation a {
+            padding: 0.3em;
+            color: rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: inline-block;
+            letter-spacing: 1px;
+            margin: 0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            #navigation a:before,
+            #navigation a:after {
+                position: absolute;
+                -webkit-transition: all 0.35s ease;
+                transition: all 0.35s ease;
+            }
+
+            #navigation a:before {
+                bottom: 100%;
+                display: block;
+                height: 3px;
+                width: 100%;
+                content: "";
+                background-color: #f39c12;
+            }
+
+            #navigation a:after {
+                padding: 0.5em 0;
+                position: absolute;
+                bottom: 100%;
+                left: 6px;
+                content: attr(data-hover);
+                color: white;
+                white-space: nowrap;
+            }
+
+        #navigation li:hover a,
+        #navigation .current a {
+            transform: translateY(100%);
+        }
+
+    .navbar-nav li a:hover {
+        background-color: transparent;
+    }
+}
+
+#navigation {
+    font-family: 'Raleway', Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+body {
+    background-color: #ecf0f1;
+}
+
+.navbar-custom-color {
+    background-color: #1abc9c;
+    border-color: #16a085;
+}
+
+.navbar-brand {
+    font-family: 'Lato', Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+    .navbar-brand:hover {
+        color: white;
+    }
+
+.btn-custom {
+    color: #ffffff;
+    background-color: #3498db;
+    border-color: #2980b9;
+    margin-bottom: 10px;
+}
+
+    .btn-custom:hover {
+        color: #ffffff;
+        background-color: #2980b9;
+        border-color: #3498db;
+        margin-bottom: 10px;
+    }
+
+.btn-cart {
+    color: #2c3e50;
+    background-color: #f1c40f;
+    border-color: #f39c12;
+    margin-bottom: 10px;
+}
+
+    .btn-cart:hover {
+        color: #ecf0f1;
+        background-color: #f39c12;
+        border-color: #f1c40f;
+        margin-bottom: 10px;
+    }
+
+.prijs-bubbel {
+    background-color: #c0392b;
+    color: white;
+    border-radius: 10px !important;
+}
+
+.koop-bubbel {
+    color: #2c3e50;
+    background-color: #f1c40f;
+    border-color: #f39c12;
+}
+
+    .koop-bubbel:hover {
+        color: #2c3e50;
+        background-color: #f39c12;
+        border-color: #f1c40f;
+    }
+
+.bubbel {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+    padding: 15px 10px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+}
+
+.plaatjecontainer {
+    border: black;
+    border-style: dotted;
+    border-width: 1px;
+    margin-bottom: 10px;
+}
+
+#productRow hr {
+    border-top: 1px solid #16a085;
+}
+
+.titlecontainer {
+    width: 100%;
+    background-image: url("/Content/images/food-healthy-vegetables-potatoes.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 250px;
+    color: white;
+    text-shadow: 0px 0px 10px #333;
+}
+
+    .titlecontainer h1 {
+        padding-top: 80px;
+        font-weight: 800;
+        text-align: center;
+        font-family: 'Lato', Arial, sans-serif;
+    }
+
+    .titlecontainer h2 {
+        font-weight: 500;
+        text-align: center;
+        font-family: 'Raleway', Arial, sans-serif;
+    }
+
+#winkelwagenmenu {
+    width: 350px;
+}
+
+    #winkelwagenmenu li {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 5px;
+        display: flex;
+    }
+
+
+        #winkelwagenmenu li i.fa-exclamation {
+            color: red;
+        }
+
+        #winkelwagenmenu li i {
+            margin-top: 5px;
+        }
+
+        #winkelwagenmenu li:hover i {
+            opacity: 0.8;
+        }
+
+        #winkelwagenmenu li > a:hover, #winkelwagenmenu li > i:hover {
+            cursor: pointer;
+        }
+
+#winkelwagenBtn {
+    margin-top: 10px;
+}
+
+#afrekenItem a {
+    font-weight: bold;
+    font-size: medium;
+    border-top: 1px solid #16a085;
+}
+
+.categorielist {
+    list-style: none;
+}
+
+    .categorielist li {
+        display: inline;
+    }
+
+.text-bold {
+    font-weight: bold;
+}
+
+.hoeveelheidSpinner{
+    width: 50px;
+}

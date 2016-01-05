@@ -1,0 +1,65 @@
+﻿@using MvcWebshop.Models
+
+
+@model Categorie
+
+@{
+    ViewBag.Title = "Categorie: " + Model.naam;
+}
+
+<h2>@Html.DisplayFor(model => model.naam)</h2>
+
+<hr />
+<div class="text-center">
+    <img src="@Html.DisplayFor(model => model.plaatje)" alt="@Html.DisplayFor(model => model.naam)" width="200" height="200" />
+    <div class="well well-sm">
+        <span class="help-block ">
+            Omschrijving
+        </span>
+        @Html.DisplayFor(model => model.omschrijving)
+    </div>
+</div>
+<div class="row" id="productRow">
+    @foreach (Product p in Model.products)
+    {
+        <div class="row">
+
+            <div class="col-lg-3 center-block">
+                <img src="@p.plaatje" height="150" width="150" alt="@p.naam" title="@p.naam" class="plaatjecontainer" />
+            </div>
+            <div class="col-lg-6">
+                <h4>@p.naam</h4>
+                @try
+                {
+                    @p.omschrijving.Substring(0, 100) <span>...</span>
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    @p.omschrijving
+                }
+                <br />
+            </div>
+            <div class="col-lg-3">
+                @if (p.aanbiedingen.Count > 0)
+                {
+                    Aanbieding a = p.aanbiedingen.Last();
+                    <del>&euro; @p.prijs</del> <strong>&euro; @a.aanbiedingsprijs</strong>
+                }
+                else
+                {
+                    <strong>&euro; @p.prijs </strong>
+                }
+                <br />
+                @Html.ActionLink("Meer info", "Id", "Product", new { id = p.id }, new { @class = "btn btn-custom" })
+                <br />
+                <input type="number" id="hoeveelheidSpinner_@p.id" class="hoeveelheidSpinner" value="1" min="1" />
+                <a href="javascript:addToCart(@p.id)" class="btn btn-cart"><i class="fa fa-cart-plus"></i> In Winkelwagen</a>
+                <hr />
+            </div>
+        </div>
+    }
+</div>
+
+@*<p class="text-center">
+    @Html.ActionLink("Terug naar Categorie Overicht", "Index")
+</p>*@

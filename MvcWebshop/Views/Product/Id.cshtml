@@ -1,0 +1,60 @@
+﻿@using MvcWebshop.Models
+
+@model Product
+
+@{
+    ViewBag.Title = Model.naam;
+}
+
+<h2>@Html.DisplayFor(model => model.naam)</h2>
+
+<ul class="categorielist">
+    @foreach (var item in Model.categories)
+    {
+        <li><a class="btn btn-custom" href="@Url.Action("Id", "Categorie", new { id = @item.id })">@item.naam</a></li>
+    }
+</ul>
+
+<div>
+    <hr />
+
+    <div class="text-center">
+        <div class="row">
+            <div class="col-lg-7">
+                <img src="@Html.DisplayFor(model => model.plaatje)" alt="@Html.DisplayFor(model => model.naam)" width="500" height="500" class="plaatjecontainer" />
+            </div>
+
+            <div class="col-lg-5 text-left">
+                <span class="help-block text-center">
+                    Omschrijving
+                </span>
+                @Html.DisplayFor(model => model.omschrijving)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1">
+                @if (Model.aanbiedingen.Count > 0)
+                {
+                    Aanbieding a = Model.aanbiedingen.Last();
+                    DateTime datumVan = (DateTime)a.datumVan;
+                    DateTime datumTot = (DateTime)a.datumTot;
+                    <div class="bubbel prijs-bubbel">
+                        <del>&euro; @Model.prijs</del> <strong>&euro; @Model.GetPrijs()</strong>  <br />
+                        Deze aanbieding is geldig van <strong>@datumVan.ToString("dd-MM-yyyy")</strong> tot <strong>@datumTot.ToString("dd-MM-yyyy")</strong>
+                    </div>
+                }
+                else
+                {
+                    <div class="bubbel prijs-bubbel">
+                        &euro; @Model.prijs
+                    </div>
+                }
+            </div>
+            <div class="col-lg-6">
+                <input type="number" id="hoeveelheidSpinner_@Model.id" class="hoeveelheidSpinner" value="1" min="1" />
+                <a href="javascript:addToCart(@Model.id)" class="btn bubbel koop-bubbel"><i class="fa fa-cart-plus"></i> In Winkelwagen</a>
+            </div>
+        </div>
+    </div>
+</div>

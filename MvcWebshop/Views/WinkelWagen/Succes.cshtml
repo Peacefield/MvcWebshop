@@ -1,0 +1,19 @@
+﻿@model bool
+
+
+
+
+@if (Model)
+{
+    ViewBag.Title = "Bestelling sucesvol";
+    
+    <h2>Uw bestelling is succesvol afgerond.</h2>
+    @Html.ActionLink("Klik hier om naar de homepage te gaan", "Index", "Home")
+}
+else
+{
+    ViewBag.Title = "Fout bij bestellen";
+    
+    <h2>Er is een fout opgetreden.</h2>
+    @Html.ActionLink("Klik hier om naar de homepage te gaan", "Index", "Home")
+}

@@ -1,0 +1,41 @@
+﻿@using MvcWebshop.Models
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="titlecontainer">
+    <h1>Keukenshop</h1>
+    <br />
+    <h2>Aanbiedingen</h2>
+</div>
+<hr />
+<div class="row" id="productRow">
+    @foreach (Aanbieding a in Model)
+    {
+        <div class="col-md-4 text-center">
+            <img src="@a.product.plaatje" height="200" width="200" />
+            <h4>@a.product.naam</h4>
+
+            @if (a.reclametekst.Length > 99)
+            {
+                @a.reclametekst.Substring(0, 100)<br />
+            }
+
+            <del>&euro; @a.product.prijs</del> &euro; @a.aanbiedingsprijs
+            <hr />
+            <div class="row">
+                <div class="col-md-4">                    
+                    @Html.ActionLink("Meer info", "Id", "Product", new { id = a.product.id }, new { @class = "btn btn-default btn-primary" })
+                </div>
+                <div class="col-md-2">
+                    <input type="number" id="hoeveelheidSpinner_@a.product.id" class="hoeveelheidSpinner" value="1" min="1"/>
+                </div>
+                <div class="col-md-6">
+                    <a href="javascript:addToCart(@a.product.id)" class="btn btn-cart"><i class="fa fa-cart-plus"></i> In Winkelwagen</a>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>

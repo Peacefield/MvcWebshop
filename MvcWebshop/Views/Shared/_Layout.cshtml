@@ -1,0 +1,74 @@
+﻿@using MvcWebshop.Controllers
+@*@using MvcWebshop.Models*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Keukenshop</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-custom-color navbar-fixed-top">
+        <div class="container">
+            <div id="uitklap-menu" class="text-center">
+                <i class="fa fa-bars fa-3x"></i>
+            </div>
+
+            <div class="navbar-header">
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div id="navigation">
+                @Html.Partial("_CatNavPartial", new CatNavController().Categorieen())
+            </div>
+            <div id="winkelwagendropdown">
+                @Html.Partial("_WinkelWagenPartial", new WinkelWagenController().GetWinkelWagenFromSession())
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <footer class="text-center">
+        <p>&copy; @DateTime.Now.Year - Michael Vredeveld - S1049608</p>
+    </footer>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="~/Scripts/custom/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/custom/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/notifyjs/notifyjs/master/dist/notify.js"></script>
+
+    <script type="text/javascript" src="~/scripts/custom/menutoggle.js"></script>
+
+    <script type="text/javascript">
+
+        function addToCart(productId) {
+            var hoeveelheid = $("#hoeveelheidSpinner_" + productId).val();
+            $.post("@Url.Action("ProductToevoegen", "WinkelWagen")", { ProductID: productId, hoeveelheid: hoeveelheid }, function (data) {
+                $("#winkelwagendropdown").html(data);
+                $.notify(hoeveelheid + "x toegevoegd aan winkelwagen",
+                    { position: "bottom right", className: "success", autoHideDelay: 2000 }
+                );
+            });
+        }
+
+        function deleteFromCart(productId) {
+            $.post("@Url.Action("ProductVerwijderen", "WinkelWagen")", { ProductID: productId }, function (data) {
+                $("#winkelwagendropdown").html(data);
+            });
+        }
+
+    </script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @{ Html.EnableClientValidation(true); }
+    @{ Html.EnableUnobtrusiveJavaScript(true); }
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

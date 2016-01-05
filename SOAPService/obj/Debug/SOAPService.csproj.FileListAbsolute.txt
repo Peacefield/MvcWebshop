@@ -1,0 +1,6 @@
+C:\Users\Michael\Dropbox\HW\Server\MvcWebshop\SOAPService\bin\SOAPService.dll.config
+C:\Users\Michael\Dropbox\HW\Server\MvcWebshop\SOAPService\bin\SOAPService.dll
+C:\Users\Michael\Dropbox\HW\Server\MvcWebshop\SOAPService\bin\SOAPService.pdb
+C:\Users\Michael\Dropbox\HW\Server\MvcWebshop\SOAPService\obj\Debug\SOAPService.dll
+C:\Users\Michael\Dropbox\HW\Server\MvcWebshop\SOAPService\obj\Debug\SOAPService.pdb
+C:\Users\Michael\Dropbox\HW\Server\MvcWebshop\SOAPService\obj\Debug\SOAPService.csprojResolveAssemblyReference.cache

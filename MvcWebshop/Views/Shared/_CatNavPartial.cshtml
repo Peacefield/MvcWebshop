@@ -1,0 +1,15 @@
+﻿@using MvcWebshop.Models
+
+
+@model List<Categorie>
+
+@*<div class="navbar-collapse collapse">*@
+    <ul class="nav navbar-nav">
+
+        @foreach (Categorie c in @Model)
+        {
+            <li>@Html.ActionLink(c.naam, "Id", "Categorie", new { id = c.id }, new { data_hover = c.naam })</li>
+        }
+
+    </ul>
+@*</div>*@

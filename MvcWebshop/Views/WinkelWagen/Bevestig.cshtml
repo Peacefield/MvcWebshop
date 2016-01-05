@@ -1,0 +1,131 @@
+﻿@using MvcWebshop.Controllers
+@using MvcWebshop.Models
+
+@model Klant
+
+@{
+    ViewBag.Title = "Bevestig Gegevens";
+}
+
+<h2>Controleer uw gegevens</h2>
+
+<div>
+    <hr />
+    <h4>Winkelwagen</h4>
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-bold">
+            Product
+        </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 text-bold">
+            Prijs
+        </div>
+        @{
+            WinkelWagen c = new WinkelWagenController().GetWinkelWagenFromSession();
+        }
+        @foreach (var p in c.Producten)
+        {
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                @p.naam
+            </div>
+            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                &euro; @p.GetPrijs()
+            </div>
+        }
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            Totaal:
+        </div>
+        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+            &euro; @c.Totaal()
+        </div>
+    </div>
+</div>
+<hr />
+
+
+<div>
+    <hr />
+    <h4>Klantgegevens</h4>
+    @using (Html.BeginForm("Succes","WinkelWagen"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+
+            <div class="form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-bold">
+                    Voornaam:
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    @Html.EditorFor(model => model.voornaam, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.voornaam, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-bold">
+                    Achternaam:
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    @Html.EditorFor(model => model.achternaam, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.achternaam, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-bold">
+                    Adres:
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    @Html.EditorFor(model => model.adres, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.adres, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-bold">
+                    Postcode:
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    @Html.EditorFor(model => model.postcode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.postcode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-bold">
+                    Stad:
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                    @Html.EditorFor(model => model.stad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.stad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="akkoordDiv">
+            <input type="checkbox" id="akkoord" onclick="setCheck()" />Ik ga akkoord met de <a href="https://www.webwinkelkeur.nl/webwinkel/voorbeeld-algemene-voorwaarden-webwinkel/" target="_blank">algemene voorwaarden</a>.<br />
+
+
+            <input type="submit" value="Bestelling afronden" class="btn btn-custom" id="bestelBtn" disabled />
+
+            @*@Html.ActionLink("Bestelling afronden", "Succes", "WinkelWagen", Model, new
+                {
+                    @id = "bestelBtn",
+                    @type = "button",
+                    @disabled = "disabled",
+                    @class = "btn btn-custom"
+                })*@
+        </div>
+    }
+</div>
+
+<script>
+    function setCheck() {
+        if (document.getElementById('akkoord').checked) {
+            $("#bestelBtn").removeAttr("disabled");
+        }
+        else {
+            $("#bestelBtn").attr("disabled", true);
+        }
+    }
+</script>
